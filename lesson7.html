@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Starter Template for Bootstrap</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+    <div id="app" class="container">
+      {{$data}}
+      <div>
+        <h4>¿Has trabajado con Vue.js?</h4>
+        <div class="radio">
+          <label class="radio-inline">
+            <input type="radio" v-model="vue.exp" v-bind:value="true"> Si
+          </label>
+          <label class="radio-inline">
+            <input type="radio" v-model="vue.exp" v-bind:value="false"> No
+          </label>
+        </div>
+        <!-- Si la respuesta es si -->
+        <template v-if="vue.exp">
+          <div class="form-group">
+            <label for="">¿Cuantos años de experiencia tienes con vue?</label>
+            <input type="number" v-model="vue.years" class="form-control" name="" value="">
+          </div>
+
+          <!--Se implementa v-bind en el class para utilizar directivas
+        de js. como se obtiene en el primer div-->
+          <div v-if="vue.years < 2" class="form-group"
+          :class="descriptionFieldClasses">
+            <label class="control-label">¿Que te motivo aprender Vue js?</label>
+            <textarea v-model="vue.description" class="form-control" rows="4"></textarea>
+          </div>
+
+          <div v-else class="form-group">
+            <label for="">Cuentamos tu experencia con vue js</label>
+            <textarea v-model="vue.description" class="form-control" rows="4"></textarea>
+          </div>
+          <!--Se condiciona si el objeto description es vacio,
+          incluso validando los espacios vacios, esto es posible al metodo trim()
+          <p v-if="vue.description.trim() == ''" class="help-block">El campo descripcion es obligatorio</p>
+          <p v-else="vue.description.trim().length > 20" class="help-block">Por favor ingrese una descripcion menor a 20 caracteres</p>
+          <p v-else="vue.description.trim().length < 5" class="help-block">Por favor ingrese una descripcion mayor a 5 caracteres</p>
+          -->
+
+          <!--Otra manera de hacerlo implementado computed en vue-->
+          <p v-if="descriptionError != ''" class="help-block">
+            {{ descriptionError }}
+          </p>
+        </template>
+
+      </div>
+
+      <footer class="footer">
+        <p>&copy; 2017 Programacion jje</p>
+      </footer>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script>
+
+    <script type="text/javascript">
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          vue: {
+            exp: null,
+            years: 0,
+            description: ''
+          }
+        },
+        computed: {
+          descriptionError: function(){
+            var val = this.vue.description.trim();
+
+            if (val == '') {
+              return 'El campo es obligatorio';
+            }
+
+            if (val.length < 5) {
+              return 'Por favor ingrese una descripcion mayor a 5 caracteres';
+            }
+
+            if (val.length > 20) {
+              return 'Por favor ingrese una descripcion menor a 20 caracteres';
+            }
+          },
+          descriptionFieldClasses: function(){
+            return [
+              {'has-error': this.descriptionError}
+            ];
+          }
+        }
+
+      });
+    </script>
+
+  </body>
+</html>
