@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Starter Template for Bootstrap</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  </head>
+
+  <body>
+    <div id="app" class="container">
+      <div class="welcome">
+        Bienvenido {{ name | upper | title('Mr')}}
+
+        <!--Usando otro filtro-->
+        <p>{{ 1000.234 | money }}</p>
+      </div>
+      <footer class="footer">
+        <p>&copy; 2017 Programacion jje</p>
+      </footer>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script>
+
+    <!--Libreria numeral js-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+    <script type="text/javascript">
+
+      /*
+      * Implementacion de filtros con Vue. js
+      */
+      Vue.filter('title',function(value, title)
+      {
+        return title + '. '+ value;
+      });
+
+      Vue.filter('money',function(value)
+      {
+        return numeral(value).format('$0,0.00');
+      });
+
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          name: 'Jonathan'
+        },
+        filters: {
+          upper: function(value)
+          {
+            return value.toUpperCase();
+          }
+        }
+      });
+    </script>
+
+  </body>
+</html>
