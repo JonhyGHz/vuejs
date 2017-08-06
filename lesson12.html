@@ -56,6 +56,10 @@
         </li>
 
       </ul>
+      <form @submit.prevent="createTask" class="new-task-form" >
+        <input v-model="new_task" type="text" class="form-control">
+        <button type="button" class="btn btn-primary">Crear tarea</button>
+      </form>
       <footer class="footer">
         <p>&copy; 2017 Programacion jje</p>
       </footer>
@@ -75,30 +79,7 @@
     <!--Libreria numeral js-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 
-    <script type="text/javascript">
-      var vm = new Vue({
-        el: '#app',
-        data: {
-          tasks: [
-            {
-              description: 'Aprender Vue js',
-              pending: true,
-              editing: false
-            },
-            {
-              description: 'Suscribirse a Styde.net',
-              pending: true,
-              editing: true
-            },
-            {
-              description: 'Grabar leccion',
-              pending: false,
-              editing: false
-            }
-          ]
-        }
-      });
-    </script>
+    <script src="app.js"></script>
 
   </body>
 </html>
