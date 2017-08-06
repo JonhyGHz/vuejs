@@ -44,8 +44,8 @@
     <div id="app" class="container">
       <br><br>
       <div>
-        <!--<h1>Bienvenido {{name}}: {{ reversedName }}</h1>-->
-        <!--<h2>{{ project }}</h2>-->
+        <h1>Bienvenido {{name}}: {{ reversedName }}</h1>
+        <h2>{{ project }}</h2>
         <h1 v-text="name">
 
         </h1>
@@ -53,7 +53,7 @@
       </div>
 
       <footer class="footer">
-        <p>&copy; 2017 Programacion jje</p>
+        <p>&copy; 2017 zaratedev.com</p>
       </footer>
     </div>
 
@@ -73,9 +73,9 @@
       var vm = new Vue({
         el: "#app",
         data: {
-          name: 'Jonathan',
+          name: 'zaratedev',
           team: false,
-          project: 'progrmacion jje',
+          project: 'zaratedev.com',
         },
         computed: {
           reversedName: function()

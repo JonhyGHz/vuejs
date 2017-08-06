@@ -13,44 +13,49 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
     <div id="app" class="container">
-      <!--Implementando v-for en una lista--->
-      <!--<ul>
-        <li v-for="(task, index) in tasks">{{ index + 1 }} : {{ task }}</li>-->
-        <!--<li v-for="(task,indice) of tasks">
-          <del v-if="!task.pending">{{task.title}}</del>
-          <template v-else>
-            {{task.title}}
+
+      <h2>Tareas</h2>
+      <ul class="list-group tasks">
+        <li v-for="task in tasks" class="list-group-item" :class="{editing: task.editing, completed: !task.pending}">
+
+          <a href="#">
+            <span class="glyphicon" :class="task.pending ? 'glyphicon-unchecked' : 'glyphicon-check'" aria-hidden="true"></span>
+          </a>
+
+          <template v-if="!task.editing">
+            <span  class="description">{{task.description}}</span>
+            <div>
+              <a href="">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              </a>
+              <a href="">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </a>
+
+            </div>
           </template>
+          <template v-else id="">
+            <input type="text" v-model="task.description">
+            <div>
+              <a href="">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              </a>
+              <a href="">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              </a>
+
+            </div>
+          </template>
+
+
         </li>
 
-      </ul>-->
-
-      <h4>Todas las tareas</h4>
-      <ul>
-        <li v-for="task of tasks">
-          {{task.title}}
-        </li>
       </ul>
-      <h4 v-if="pendingTasks.length">Tareas pendientes</h4>
-      <ul v-if="pendingTasks.length">
-        <li v-for="task of pendingTasks">
-          {{task.title}}
-        </li>
-      </ul>
-      <!--Otra forma de hacerlo-->
-      <!--
-      <template v-for="(tarea, indice) in tasks">
-        <p>{{ indice + 1 }}: {{ tarea }}</p>
-        <hr>
-      </template>
-    -->
       <footer class="footer">
         <p>&copy; 2017 Programacion jje</p>
       </footer>
@@ -62,38 +67,35 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script>
 
+    <!--Libreria numeral js-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
     <script type="text/javascript">
       var vm = new Vue({
-        el: "#app",
+        el: '#app',
         data: {
           tasks: [
             {
-              title: 'Aprender Vue.js',
-              pending: false
+              description: 'Aprender Vue js',
+              pending: true,
+              editing: false
             },
             {
-              title: 'Inscribirse a styde.net',
-              pending: true
+              description: 'Suscribirse a Styde.net',
+              pending: true,
+              editing: true
             },
             {
-              title: 'Seguir @Stydenet en Twitter',
-              pending: false
-            },
+              description: 'Grabar leccion',
+              pending: false,
+              editing: false
+            }
           ]
-        },
-        computed: {
-          pendingTasks: function() {
-            return this.tasks.filter(function(item)
-            {
-              return item.pending;
-            });
-          }
         }
       });
     </script>
