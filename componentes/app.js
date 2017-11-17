@@ -8,6 +8,35 @@ Vue.component('app-icon', {
   }
 });
 
+Vue.component('app-task', {
+  template: '#task-template',
+  props: ['tasks','task', 'index'],
+  methods: {
+    toggleStatus: function () {
+      this.task.pending = !this.task.pending;
+    },
+    edit: function () {
+      this.tasks.forEach( function ( task ) {
+        task.editing = false;
+      });
+
+      this.draft = this.task.description;
+
+      this.task.editing = true;
+    },
+    update: function () {
+      this.task.description = this.draft;
+      this.task.editing = false;
+    },
+    discard: function () {
+      this.task.editing = false;
+    },
+    remove: function ( index ) {
+      this.tasks.splice(this.index, 1);
+    },
+  }
+});
+
 
 var vm = new Vue({
   el: '#app',
@@ -40,28 +69,6 @@ var vm = new Vue({
       });
 
       this.new_task = '';
-    },
-    toggleStatus: function ( task ) {
-      task.pending = !task.pending;
-    },
-    editTask: function ( task ) {
-      this.tasks.forEach( function ( task ) {
-        task.editing = false;
-      });
-
-      this.draft = task.description;
-
-      task.editing = true;
-    },
-    updateTask: function ( task ) {
-      task.description = this.draft;
-      task.editing = false;
-    },
-    discardTask: function ( task ) {
-      task.editing = false;
-    },
-    deleteTask: function ( index ) {
-      this.tasks.splice(index, 1);
     },
     deleteCompleted: function () {
       this.tasks = this.tasks.filter( function ( task ) {
