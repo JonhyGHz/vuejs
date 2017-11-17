@@ -9,6 +9,12 @@ Vue.component('app-icon', {
 });
 
 Vue.component('app-task', {
+  data: function () {
+    return {
+      editing: false,
+      draft: '',
+    };
+  },
   template: '#task-template',
   props: ['tasks','task', 'index'],
   methods: {
@@ -16,20 +22,23 @@ Vue.component('app-task', {
       this.task.pending = !this.task.pending;
     },
     edit: function () {
+      /*
+      FIX ME: reimplement this!
       this.tasks.forEach( function ( task ) {
         task.editing = false;
       });
+      */
 
       this.draft = this.task.description;
 
-      this.task.editing = true;
+      this.editing = true;
     },
     update: function () {
       this.task.description = this.draft;
-      this.task.editing = false;
+      this.editing = false;
     },
     discard: function () {
-      this.task.editing = false;
+      this.editing = false;
     },
     remove: function ( index ) {
       this.tasks.splice(this.index, 1);
@@ -40,23 +49,28 @@ Vue.component('app-task', {
 
 var vm = new Vue({
   el: '#app',
+  /*created: function () {
+    this.tasks.forEach( task => {
+      this.$set(task, 'editing', false);
+    });
+    this.tasks.forEach( function (task) {
+      this.$set(task, 'editing', false);
+    }.bind(this));
+  },
+  */
   data: {
     new_task: '',
-    draft: '',
     tasks: [{
         description: 'Aprender Vue js',
         pending: true,
-        editing: false
       },
       {
         description: 'Suscribirse a zarate.com',
         pending: true,
-        editing: false
       },
       {
         description: 'Grabar leccion',
         pending: false,
-        editing: false
       }
     ]
   },
