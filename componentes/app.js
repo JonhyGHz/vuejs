@@ -1,3 +1,5 @@
+var EventBus = new Vue;
+
 Vue.component('app-icon', {
   template: '<span :class="cssClasess" aria-hidden="true"></span>',
   props: ['img'],
@@ -17,11 +19,18 @@ Vue.component('app-task', {
   },
   template: '#task-template',
   props: ['task', 'index'],
+  created: function () {
+    EventBus.$on('editing', function (index) {
+      if (this.index != index)
+        this.discard()
+    }.bind(this));
+  },
   methods: {
     toggleStatus: function () {
       this.task.pending = !this.task.pending;
     },
     edit: function () {
+      EventBus.$emit('editing', this.index);
       /*
       FIX ME: reimplement this!
       this.tasks.forEach( function ( task ) {
