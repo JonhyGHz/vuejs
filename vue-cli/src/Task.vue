@@ -38,7 +38,7 @@
     components: {
       'app-icon': Icon
     },
-  data: function () {
+  data() {
     return {
       editing: false,
       draft: '',
@@ -46,17 +46,17 @@
   },
   template: '#task-template',
   props: ['task', 'index'],
-  created: function () {
-    EventBus.$on('editing', function (index) {
+  created() {
+    EventBus.$on('editing', (index) => {
       if (this.index != index)
         this.discard()
-    }.bind(this));
+    });
   },
   methods: {
-    toggleStatus: function () {
+    toggleStatus() {
       this.task.pending = !this.task.pending;
     },
-    edit: function () {
+    edit() {
       EventBus.$emit('editing', this.index);
       /*
       FIX ME: reimplement this!
@@ -69,14 +69,14 @@
 
       this.editing = true;
     },
-    update: function () {
+    update() {
       this.task.description = this.draft;
       this.editing = false;
     },
-    discard: function () {
+    discard() {
       this.editing = false;
     },
-    remove: function () {
+    remove() {
       this.$emit('remove', this.index);
     },
   }

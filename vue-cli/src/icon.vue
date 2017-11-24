@@ -7,7 +7,7 @@
 	export default {
 		props: ['img'],
   		computed: {
-		    cssClasess: function () {
+		    cssClasess() {
 		      return 'glyphicon glyphicon-'+this.img;
 		    }
   		}

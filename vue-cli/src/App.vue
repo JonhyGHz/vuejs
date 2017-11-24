@@ -3,9 +3,7 @@
     <h2>Tareas</h2>
 
     <ul class="list-group tasks">
-      <li is="app-task" v-for="(task, index) in tasks" :tasks="tasks" :task="task" :index="index" @remove="deleteTask">
-        
-      </li>
+      <app-task v-for="(task, index) in tasks" :tasks="tasks" :task="task" :index="index" @remove="deleteTask" :key="task.id"></app-task>
     </ul>
 
     <p><a @click="deleteCompleted">Eliminar tareas completadas</a></p>
@@ -23,7 +21,15 @@
 <script>
   import Task from './Task.vue'
 export default {
-  data: function () {
+  created() {
+    this.tasks.forEach((task, index) => {
+      this.$set(task, 'id', index + 1);
+    })
+    /*this.tasks.forEach(function (task, index) {
+      this.$set(task, 'id', index + 1);
+    }.bind(this))*/
+  },
+  data() {
     return {
       new_task: '',
       tasks: [{
@@ -45,7 +51,7 @@ export default {
     'app-task': Task
   },
   methods: {
-    createTask: function () {
+    createTask() {
       this.tasks.push({
         description: this.new_task,
         pending: true,
@@ -54,13 +60,11 @@ export default {
 
       this.new_task = '';
     },
-    deleteTask: function (index) {
+    deleteTask(index) {
       this.tasks.splice(index, 1);
     },
-    deleteCompleted: function () {
-      this.tasks = this.tasks.filter( function ( task ) {
-        return task.pending;
-      })
+    deleteCompleted() {
+      this.tasks = this.tasks.filter(task => task.pending)
     }
   }
 }
