@@ -1,18 +1,12 @@
 <template>
   <div id="app" class="container">
-    <h2>Tareas</h2>
 
     <app-task-list :tasks="tasks"></app-task-list>
 
-    <app-task-list :tasks="tasks2"></app-task-list>
 
     <p><a @click="deleteCompleted">Eliminar tareas completadas</a></p>
     
-    <h4>Crear:</h4>
     <app-task-form @created="createTask"></app-task-form>
-
-    <h4>Imprimir</h4>
-    <app-task-form @created="alertTask"></app-task-form>
 
     <footer class="footer">
       <p>&copy; 2017 zaratedev.com</p>
@@ -79,26 +73,22 @@ export default {
 </script>
 
 
-<style type="text/css">
+<style lang="scss">
   body {
     margin: 10px;
 }
 
 .container {
     max-width: 650px;
-}
-
-.container h2 {
-    margin-bottom: 20px;
-}
-
-
-
-.container footer {
-    margin: 40px 0;
-    padding-top: 20px;
-    border-top: 1px solid #ccc;
-    color: #999;
+    h2 {
+      margin-bottom: 20px;
+    }
+    footer {
+      margin: 40px 0;
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+      color: #999;
+    }
 }
 
 </style>

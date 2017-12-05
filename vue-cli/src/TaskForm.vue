@@ -1,15 +1,20 @@
 <template>
-	<form @submit.prevent="create" class="new-task-form">
-      <input v-model="draft" type="text" class="form-control">
-      <button class="btn btn-primary">Crear tarea</button>
-    </form>
+	<div>
+		<h2 class="subtitle">Nueva Tarea</h2>
+
+		<form @submit.prevent="create" class="new-task-form">
+      		<input v-model="draft" type="text" class="form-control">
+      		<button class="btn btn-primary">Crear tarea</button>
+    	</form>
+	</div>
+	
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				graft: ''
+				draft: ''
 			}
 		},
 		methods: {
@@ -27,12 +32,12 @@
 	}
 </script>
 
-<style type="text/css">
+<style lang="scss">
 	.new-task-form {
     	display: flex;
-	}
 
-	.new-task-form input {
-	    margin-right: 10px;
+    	input {
+	    	margin-right: 10px;
+		}
 	}
 </style>

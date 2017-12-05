@@ -1,8 +1,11 @@
 <template>
+	<div>
+		<h2 :class="$style.subtitle">Tareas</h2>
+		<ul class="list-group tasks-list">
+      		<app-task v-for="(task, index) in tasks" :tasks="tasks" :task="task" :index="index" @remove="deleteTask" :key="task.id"></app-task>
+    	</ul>
+	</div>
 	
-	<ul class="list-group tasks-list">
-      <app-task v-for="(task, index) in tasks" :tasks="tasks" :task="task" :index="index" @remove="deleteTask" :key="task.id"></app-task>
-    </ul>
 
 
 </template>
@@ -24,10 +27,15 @@
 
 </script>
 
-<style type="text/css">
-	
-.tasks-list {
-    margin-bottom: 40px;
-}
+<style lang="scss">
+	.tasks-list {
+	    margin-bottom: 40px;
+	}
 
+</style>
+
+<style lang="sass">
+	.subtitle {
+		color: blue;
+	}
 </style>
