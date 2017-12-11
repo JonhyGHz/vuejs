@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h2 :class="$style.subtitle">Tareas</h2>
+		<h2 class="subtitle">Tareas</h2>
 		<ul class="list-group tasks-list">
       		<app-task v-for="(task, index) in tasks" :tasks="tasks" :task="task" :index="index" @remove="deleteTask" :key="task.id"></app-task>
     	</ul>
@@ -28,14 +28,11 @@
 </script>
 
 <style lang="scss">
+	@import "sass/variable";
 	.tasks-list {
 	    margin-bottom: 40px;
 	}
-
-</style>
-
-<style lang="sass">
 	.subtitle {
-		color: blue;
+		color: $color-blue;
 	}
 </style>

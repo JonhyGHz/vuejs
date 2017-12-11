@@ -5,7 +5,7 @@
 
 
     <p><a @click="deleteCompleted">Eliminar tareas completadas</a></p>
-    
+
     <app-task-form @created="createTask"></app-task-form>
 
     <footer class="footer">
@@ -74,6 +74,7 @@ export default {
 
 
 <style lang="scss">
+  @import "./sass/app";
   body {
     margin: 10px;
 }
@@ -92,8 +93,3 @@ export default {
 }
 
 </style>
-
-
-
-
-
