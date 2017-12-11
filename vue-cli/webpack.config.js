@@ -1,6 +1,11 @@
 var path = require('path')
 var webpack = require('webpack')
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+var glob = require('glob')
+var PurifyCSSPlugin = require('purifycss-webpack')
+
+var inProduction =  process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: './src/main.js',
@@ -65,7 +70,14 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin("style.css")
+    new ExtractTextPlugin("style.css"),
+    new PurifyCSSPlugin({
+      // Give paths to parse for rules. These should be absolute!
+      paths: glob.sync(path.join(__dirname, 'src/*.vue')),
+      purifyOptions: {
+        minify: inProduction
+      }
+    })
   ],
   resolve: {
     alias: {
@@ -84,7 +96,7 @@ module.exports = {
   devtool: '#eval-source-map'
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (inProduction) {
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
