@@ -73,7 +73,7 @@ module.exports = {
     new ExtractTextPlugin("style.css"),
     new PurifyCSSPlugin({
       // Give paths to parse for rules. These should be absolute!
-      paths: glob.sync(path.join(__dirname, 'src/*.vue')),
+      paths: glob.sync(path.join(__dirname, 'src/**/*.vue')),
       purifyOptions: {
         minify: inProduction
       }
@@ -81,7 +81,9 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      'src': path.join(__dirname, 'src'),
+      'components': path.join(__dirname, 'src/components')
     },
     extensions: ['*', '.js', '.vue', '.json']
   },

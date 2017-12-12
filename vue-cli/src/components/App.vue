@@ -15,8 +15,8 @@
 </template>
 
 <script>
-  import TaskList from './TaskList.vue'
-  import TaskForm from './TaskForm.vue'
+  import TaskList from './Task/List.vue'
+  import TaskForm from './Task/CreateForm.vue'
 export default {
   created() {
     this.tasks.forEach((task, index) => {
@@ -74,7 +74,7 @@ export default {
 
 
 <style lang="scss">
-  @import "./sass/app";
+  @import "src/sass/app";
   body {
     margin: 10px;
 }

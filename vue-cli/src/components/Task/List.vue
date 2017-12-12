@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h2 class="subtitle">Tareas</h2>
+		<h2>Tareas</h2>
 		<ul class="list-group tasks-list">
       		<app-task v-for="(task, index) in tasks" :tasks="tasks" :task="task" :index="index" @remove="deleteTask" :key="task.id"></app-task>
     	</ul>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-	import Task from './Task.vue'
+	import Task from './ListItem.vue'
 
 	export default {
 		components: {
@@ -28,11 +28,8 @@
 </script>
 
 <style lang="scss">
-	@import "sass/variable";
+	@import "src/sass/variable";
 	.tasks-list {
 	    margin-bottom: 40px;
-	}
-	.subtitle {
-		color: $color-blue;
 	}
 </style>

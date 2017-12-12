@@ -32,8 +32,8 @@
 </template>
 
 <script>
-  import EventBus from './event-bus.js'
-  import Icon from './icon.vue'
+  import EventBus from 'src/event-bus.js'
+  import Icon from 'components/icon.vue'
 	export default {
     components: {
       'app-icon': Icon
