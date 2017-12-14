@@ -2,7 +2,7 @@
 	<div>
 		<h2>Tareas</h2>
 		<ul class="list-group tasks-list">
-      		<app-task v-for="(task, index) in tasks" :tasks="tasks" :task="task" :index="index" @remove="deleteTask" :key="task.id"></app-task>
+      		<list-item v-for="(task, index) in tasks" :tasks="tasks" :task="task" :index="index" @remove="deleteTask" :key="task.id"></list-item>
     	</ul>
 	</div>
 	
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-	import Task from './ListItem.vue'
+	import ListItem from './ListItem.vue'
 
 	export default {
 		components: {
-			'app-task': Task
+			'list-item': ListItem
 		},
 		props: ['tasks'],
 		methods: {
