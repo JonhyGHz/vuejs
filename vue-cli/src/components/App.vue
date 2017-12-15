@@ -1,8 +1,14 @@
 <template>
   <div id="app" class="container">
     <h1>Curso de Vue - zaratedev</h1>
+    <router-link to="/">Dashboard</router-link>
+    <router-link to="/tasks">Tareas</router-link>
+
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
     
-    <app-tasks></app-tasks>
+
     <footer class="footer">
       <p>&copy; 2017 zaratedev.com</p>
     </footer>
@@ -10,11 +16,8 @@
 </template>
 
 <script>
-  import Tasks from "components/Task/Task.vue"
   export default {
-    components: {
-      'app-tasks': Tasks
-    }
+
   }
 </script>
 
