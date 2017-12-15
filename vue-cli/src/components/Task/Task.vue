@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<task-list :tasks="tasks"></task-list>
-    	<p><a @click="deleteCompleted">Eliminar tareas completadas</a></p>
-    	<task-form @created="createTask"></task-form>
+    <p><a @click="deleteCompleted">Eliminar tareas completadas</a></p>
+    <task-form @created="createTask"></task-form>
 	</div>
 </template>
 

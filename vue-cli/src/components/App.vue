@@ -1,8 +1,11 @@
 <template>
   <div id="app" class="container">
     <h1>Curso de Vue - zaratedev</h1>
-    <router-link to="/">Dashboard</router-link>
-    <router-link to="/tasks">Tareas</router-link>
+
+    <ul class="nav nav-tabs">
+      <router-link tag="li" to="/" active-class="active" exact><a>Dashboard</a></router-link>
+      <router-link tag="li" to="/tasks" active-class="active"><a>Tareas</a></router-link>
+    </ul>
 
     <keep-alive>
       <router-view></router-view>
