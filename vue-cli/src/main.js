@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import EventBus from 'event-bus.js'
-import router from 'router/'
+import router from 'router/index.js'
 import App from './components/App.vue'
 
 
